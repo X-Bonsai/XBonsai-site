@@ -235,7 +235,18 @@ nav {
         grid-template-columns: 1fr;
     }
 
-    .hero-image img,
+    .hero-image {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
+    }
+
+    .hero-image img {
+        border-radius: 0;
+        max-height: none;
+        width: 100%;
+    }
+
     .feature-image {
         max-height: 200px;
     }
