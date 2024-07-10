@@ -1,27 +1,79 @@
-﻿.gallery-grid {
+/* Import Google Fonts if not already imported in StyleSheet1.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+/* General styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Gallery section styles */
+.gallery {
+    padding: 100px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--text-color);
+}
+
+/* New styles for gallery navigation */
+.gallery-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.gallery-nav .pill-button {
+    /* Additional styles specific to gallery navigation buttons, if needed */
+    font-size: 0.9rem;
+}
+
+/* Gallery grid styles */
+.gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
 .gallery-item {
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
 }
 
-    .gallery-item:hover {
-        transform: scale(1.05);
-    }
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
 
 .gallery-thumbnail {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
+.gallery-item:hover .gallery-thumbnail {
+    transform: scale(1.05);
+}
+
+/* Lightbox styles */
 .lightbox {
     display: none;
     position: fixed;
@@ -30,7 +82,8 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
+    transition: opacity 0.3s ease;
 }
 
 .lightbox-content {
@@ -39,6 +92,15 @@
     max-width: 90%;
     max-height: 90%;
     border-radius: 4px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lightbox.active .lightbox-content {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .close {
@@ -52,9 +114,24 @@
     cursor: pointer;
 }
 
-    .close:hover,
-    .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
+
+    .gallery-nav {
+        flex-wrap: wrap;
+    }
+
+    .gallery-nav .pill-button {
+        font-size: 0.8rem;
+    }
+}
